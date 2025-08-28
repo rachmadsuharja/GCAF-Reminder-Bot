@@ -2,8 +2,9 @@ module.exports = {
   GOOGLE_SHEET_ID: process.env.GOOGLE_SHEET_ID || "",
   GOOGLE_SHEET_RANGE: process.env.GOOGLE_SHEET_RANGE || "Sheet1!A2:L",
 
-  MESSAGE_TEMPLATE: `Halo kak {participant_name}
-perkenalkan saya ${process.env.FACILITATOR_NAME}, fasilitator kakak di program *Google Cloud Arcade Fasilitator 2025*. Deadline tersisa *19 hari lagi*, saya perhatikan sejauh ini kakak belum memperoleh badge. Kalau ada kendala atau butuh bantuan, silakan sampaikan ya. Supaya saya bisa bantu carikan solusinya 😊
+  MESSAGE_TEMPLATE: `Halo kak {participant_name}!
+
+Perkenalkan saya ${process.env.FACILITATOR_NAME}, fasilitator kakak di program *Google Cloud Arcade Fasilitator 2025*. Deadline tersisa *${process.env.PROGRAM_DEADLINE}*, saya perhatikan sejauh ini kakak belum memperoleh badge. Kalau ada kendala atau butuh bantuan, silakan sampaikan ya. Supaya saya bisa bantu carikan solusinya 😊
 
 Terima kasih atas perhatiannya!
 
