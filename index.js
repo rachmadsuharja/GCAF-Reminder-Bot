@@ -80,6 +80,27 @@ function askUserConfirmation(question) {
   });
 }
 
+function askUserOption(question, options) {
+  const rl = readline.createInterface({
+    input: process.stdin,
+    output: process.stdout,
+  });
+
+  const menu = options.map((opt, idx) => `${idx + 1}. ${opt}`).join("\n");
+
+  return new Promise((resolve) => {
+    rl.question(`${question}\n${menu}\nChoose option: `, (answer) => {
+      rl.close();
+      const index = parseInt(answer.trim(), 10) - 1;
+      if (index >= 0 && index < options.length) {
+        resolve(options[index]);
+      } else {
+        resolve(null);
+      }
+    });
+  });
+}
+
 console.log("Initializing WhatsApp client...");
 
 client.on("qr", (qr) => {
@@ -95,8 +116,25 @@ client.on("ready", async () => {
   console.log("WhatsApp client is ready!");
 
   try {
-    console.log("Fetching participant data...");
-    const allParticipants = await getDataFromGoogleSheets();
+    const source = await askUserOption("Select data source:", [
+      "Google Sheets",
+      "CSV",
+    ]);
+
+    if (!source) {
+      console.log("Invalid choice. Exiting...");
+      process.exit(0);
+    }
+
+    console.log(`Fetching participant data from ${source}...`);
+
+    let allParticipants = [];
+    if (source === "Google Sheets") {
+      allParticipants = await getDataFromGoogleSheets();
+    } else if (source === "CSV") {
+      allParticipants = await getDataFromCSV("data.csv");
+    }
+
     console.log(`Total participants found: ${allParticipants.length}`);
 
     const noProgressParticipants = allParticipants.filter(config.FILTER_LOGIC);
