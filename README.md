@@ -21,7 +21,7 @@ This bot helps facilitators track participant progress from Google Sheets and au
 - [whatsapp-web.js](https://github.com/pedroslopez/whatsapp-web.js) – WhatsApp automation
 - [googleapis](https://github.com/googleapis/google-api-nodejs-client) – Google Sheets API
 - [dotenv](https://github.com/motdotla/dotenv) – Environment variables
-- [csv-parser](https://github.com/mafintosh/csv-parser) – CSV data parsing (optional)
+- [csv-parser](https://github.com/mafintosh/csv-parser) – CSV data parsing
 
 ---
 
@@ -57,7 +57,7 @@ Download your Google Service Account credentials as credentials.json and place i
 ### 5. Run the bot
 
 ```bash
-   node index.js
+   npm start
 ```
 
 Scan the QR code with your WhatsApp app to log in.
